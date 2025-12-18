@@ -95,6 +95,20 @@ if ($ADMIN->fulltree) {
     // Must add the page after definiting all the settings!
     $settings->add($page);
 
+    // Custom settings
+    $page = new admin_settingpage('theme_boost_edu_custom', get_string('customsettings', 'theme_boost_edu'));
+
+    // Background color setting.
+    $name = 'theme_boost_edu/backgroundcolor';
+    $title = get_string('backgroundcolor', 'theme_boost_edu');
+    $description = get_string('backgroundcolor_desc', 'theme_boost_edu');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '#f0f0f0');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Must add the page after definiting all the settings!
+    $settings->add($page);
+   
     // Advanced settings.
     $page = new admin_settingpage('theme_boost_edu_advanced', get_string('advancedsettings', 'theme_boost_edu'));
 

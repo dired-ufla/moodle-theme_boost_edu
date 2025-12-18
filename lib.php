@@ -25,6 +25,41 @@
 // This line protects the file from being accessed by a URL directly.                                                               
 defined('MOODLE_INTERNAL') || die();
 
+
+/**
+ * Get SCSS to prepend.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ */
+function theme_boost_edu_get_pre_scss($theme) {
+
+    $scss = '';
+
+    $configurable = [
+        // Config key => [variableName, ...].
+        'backgroundcolor' => ['backgroundcolor'],
+    ];
+
+    // Prepend variables first.
+    foreach ($configurable as $configkey => $targets) {
+        $value = isset($theme->settings->{$configkey}) ? $theme->settings->{$configkey} : null;
+        if (empty($value)) {
+            continue;
+        }
+        array_map(function($target) use (&$scss, $value) {
+            $scss .= '$' . $target . ': ' . $value . ";\n";
+        }, (array) $targets);
+    }
+
+    // Prepend pre-scss.
+    if (!empty($theme->settings->scsspre)) {
+        $scss .= $theme->settings->scsspre;
+    }
+
+    return $scss;
+}
+
 // We will add callbacks here as we add features to our theme.
 function theme_boost_edu_get_main_scss_content($theme) {                                                                                
     global $CFG;                                                                                                                    

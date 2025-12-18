@@ -74,3 +74,6 @@ $THEME->haseditswitch = true;
 $THEME->scss = function($theme) {                                                                                                   
     return theme_boost_edu_get_main_scss_content($theme);                                                                               
 };
+
+$THEME->prescsscallback = 'theme_boost_edu_get_pre_scss';
+

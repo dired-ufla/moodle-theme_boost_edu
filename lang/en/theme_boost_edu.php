@@ -64,3 +64,8 @@ $string['privacy:drawerblockopen'] = 'The current preference for the block drawe
 
 // We need to include a lang string for each block region.                                                                          
 $string['region-side-pre'] = 'Right';
+
+// My custom strings
+$string['backgroundcolor'] = 'Background colour';
+$string['backgroundcolor_desc'] = 'Choose the background colour for all pages.';
+$string['customsettings'] = 'Custom';
